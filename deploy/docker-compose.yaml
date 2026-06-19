@@ -1,0 +1,8 @@
+services:
+  equipos1:
+    container_name: equipos1
+    image: mauron/equipos:3
+    ports:
+      - "9080:8080"
+    volumes:
+      - ./share:/u01

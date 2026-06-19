@@ -1,0 +1,38 @@
+### Crear equipo
+POST http://localhost:8080/api/equipos
+Content-Type: application/json
+
+{
+  "nombre": "Real Madrid",
+  "estadio": "Santiago Bernabéu",
+  "ciudad": "Madrid"
+}
+
+### Crear otro equipo
+POST http://localhost:8080/api/equipos
+Content-Type: application/json
+
+{
+  "nombre": "FC Barcelona",
+  "estadio": "Camp Nou",
+  "ciudad": "Barcelona"
+}
+
+### Listar todos los equipos
+GET http://localhost:8080/api/equipos
+
+### Buscar equipo por ID
+GET http://localhost:8080/api/equipos/1
+
+### Actualizar equipo
+PUT http://localhost:8080/api/equipos/1
+Content-Type: application/json
+
+{
+  "nombre": "Real Madrid CF",
+  "estadio": "Santiago Bernabéu",
+  "ciudad": "Madrid"
+}
+
+### Eliminar equipo
+DELETE http://localhost:8080/api/equipos/1
