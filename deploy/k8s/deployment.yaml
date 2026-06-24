@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: equipos
+  labels:
+    app: equipos
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: equipos
+  template:
+    metadata:
+      labels:
+        app: equipos
+    spec:
+      containers:
+        - name: equipos
+          image: mauron/equipos:4
+          ports:
+            - containerPort: 8080
+          env:
+            - name: DB_HOST
+              value: postgres14
+            - name: DB_PORT
+              value: "5432"
+            - name: DB_NAME
+              value: equiposdb
+            - name: DB_USER
+              value: postgres
+            - name: DB_PASSWORD
+              value: "123456789"
+
+

@@ -15,22 +15,6 @@ services:
     networks:
       - micros
 
-  equipos-prd:
-    container_name: equipos2
-    image: mauron/equipos:4
-    ports:
-      - "7080:8080"
-    volumes:
-      - ./share:/u01
-    environment:
-      - DB_HOST=postgres14
-      - DB_PORT=5432
-      - DB_NAME=equiposdb
-      - DB_USER=postgres
-      - DB_PASSWORD=123456789
-    networks:
-      - micros
-
 networks:
   micros:
     external: true
