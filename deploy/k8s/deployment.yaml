@@ -4,6 +4,7 @@ metadata:
   name: equipos
   labels:
     app: equipos
+  namespace: diplomado
 spec:
   replicas: 1
   selector:
@@ -16,19 +17,32 @@ spec:
     spec:
       containers:
         - name: equipos
-          image: mauron/equipos:4
+          image: mauron/equipos:5
           ports:
             - containerPort: 8080
-          env:
-            - name: DB_HOST
-              value: postgres14
-            - name: DB_PORT
-              value: "5432"
-            - name: DB_NAME
-              value: equiposdb
-            - name: DB_USER
-              value: postgres
-            - name: DB_PASSWORD
-              value: "123456789"
+          livenessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8080
+              scheme: HTTP
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            timeoutSeconds: 2
+            failureThreshold: 3
+          readinessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8080
+              scheme: HTTP
+            initialDelaySeconds: 10
+            periodSeconds: 5
+            timeoutSeconds: 2
+            failureThreshold: 3
+          envFrom:
+            - configMapRef:
+                name: equipos-config
+            - secretRef:
+                name: equipos-secret
+---
 
 

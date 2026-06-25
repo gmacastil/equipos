@@ -2,9 +2,17 @@
 
 mvn clean package -DskipTests
 
+
+# analisis SAST
+
+mvn clean verify -DskipTests org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
+  -Dsonar.login=squ_08fc574ffe2d3f8775ec96eb086e0718feed6f02 \
+  -Dsonar.host.url=https://sonarqube.business-litethinking.com
+
+
 # construccion de la imagen
 
-docker build . -t equipos:4
+docker build . -t equipos:5
 
 # correr el contenedor
 
@@ -18,8 +26,8 @@ docker compose up -d
 
 # tagging a la imagen
 
-docker tag equipos:4 mauron/equipos:4
+docker tag equipos:5 mauron/equipos:5
 
 # auth + subir la imagen
 docker login
-docker push mauron/equipos:4
+docker push mauron/equipos:5

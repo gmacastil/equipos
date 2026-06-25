@@ -4,6 +4,7 @@ metadata:
   name: equipos
   labels:
     app: equipos
+  namespace: diplomado
 spec:
   selector:
     app: equipos
