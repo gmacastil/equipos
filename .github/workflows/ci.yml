@@ -38,8 +38,10 @@ jobs:
           -Dsonar.tests=src/test/java
 
     - name: Build the Docker image
-      run: docker build . -t mauron/equipos:${{ github.number }} -t mauron/equipos:latest
-
+      run: | 
+          docker build . -t equipos:${{ github.number }}
+          docker tag equipos:${{ github.number }} mauron/equipos:${{ github.number }}
+ 
     - name: Log in to Docker Hub
       uses: docker/login-action@v2
       with:
@@ -47,7 +49,7 @@ jobs:
         password: ${{ secrets.DOCKER_PASSWORD }}
       
     - name: Push the Docker image
-      run: docker push mauron/equipos:${{ github.number }} && docker push mauron/equipos:latest
+      run: docker push mauron/equipos:${{ github.number }}
       
 
     
