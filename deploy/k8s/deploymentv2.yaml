@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: equipos2
+  labels:
+    app: equipos2
+  namespace: diplomado
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: equipos2
+  template:
+    metadata:
+      labels:
+        app: equipos2
+    spec:
+      containers:
+        - name: equipos2
+          image: mauron/equipos:7
+          ports:
+            - containerPort: 8080
+          livenessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8080
+              scheme: HTTP
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            timeoutSeconds: 2
+            failureThreshold: 3
+          readinessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8080
+              scheme: HTTP
+            initialDelaySeconds: 10
+            periodSeconds: 5
+            timeoutSeconds: 2
+            failureThreshold: 3
+          envFrom:
+            - configMapRef:
+                name: equipos-config
+            - secretRef:
+                name: equipos-secret
+---
+
+
