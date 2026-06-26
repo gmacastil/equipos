@@ -33,6 +33,9 @@ jobs:
           -Dsonar.organization=litethinking
           -Dsonar.host.url=https://sonarqube.business-litethinking.com
           -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+          -Dsonar.java.binaries=target/classes
+          -Dsonar.sources=src/main/java
+          -Dsonar.tests=src/test/java
 
     - name: Build the Docker image
       run: docker build . -t mauron/equipos:${{ github.number }} -t mauron/equipos:latest
