@@ -7,7 +7,7 @@ metadata:
   namespace: diplomado
 spec:
   selector:
-    app: equipos
+    app: equipos2
   ports:
     - name: http
       port: 9080
