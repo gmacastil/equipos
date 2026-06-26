@@ -1,7 +1,7 @@
 services:
   equipos1:
     container_name: equipos1
-    image: mauron/equipos:4
+    image: mauron/equipos:5
     ports:
       - "9080:8080"
     volumes:
