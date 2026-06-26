@@ -1,0 +1,27 @@
+name: Deploy
+
+on:
+  workflow_run:
+    workflows: ["Docker Image CI"]
+    types:
+      - completed
+    branches: [main]
+
+jobs:
+
+  build:
+
+    runs-on: self-hosted
+
+    steps:
+    - uses: actions/checkout@v4
+      
+    - name: Push the Docker image
+      run: |
+        cd deploy/k8s
+        sed -i "s|mauron/equipos:.*|mauron/equipos:${github.run_number}|" deployment.yaml
+        kubectl apply -f deployment.yaml
+      
+
+    
+
