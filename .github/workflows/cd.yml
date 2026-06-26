@@ -19,7 +19,7 @@ jobs:
     - name: Push the Docker image
       run: |
         cd deploy/k8s
-        sed -i "s|mauron/equipos:.*|mauron/equipos:${github.run_number}|" deployment.yaml
+        sed -i "s|mauron/equipos:.*|mauron/equipos:${{ github.run_number }}|" deployment.yaml
         kubectl apply -f deployment.yaml
       
 
