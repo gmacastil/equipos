@@ -6,7 +6,7 @@ metadata:
     app: equipos
   namespace: diplomado
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: equipos
