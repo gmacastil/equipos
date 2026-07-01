@@ -22,7 +22,7 @@ Content-Type: application/json
 GET http://localhost:8080/api/equipos
 
 ### Buscar equipo por ID
-GET http://localhost:8080/api/equipos/1
+GET http://localhost:8080/api/equipos/3
 
 ### Actualizar equipo
 PUT http://localhost:8080/api/equipos/1
